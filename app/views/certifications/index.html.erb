@@ -1,0 +1,40 @@
+<%= render 'dashboard_users/nav' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>My Certifications</h3>
+    
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Certification name</th>
+            <th>Certification authority</th>
+            <th>License number</th>
+            <th>Certification url</th>
+            <th>This certificate does not expire</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @certifications.each do |certification| %>
+            <tr>
+              <td><%= certification.certification_name %></td>
+              <td><%= certification.certification_authority %></td>
+              <td><%= certification.license_number %></td>
+              <td><%= certification.certification_url %></td>
+              <td><%= certification.this_certificate_does_not_expire %></td>
+              <td><%= link_to 'Edit', edit_certification_path(certification) %></td>
+              <td><%= link_to 'Delete', certification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  <br>
+  <p><%= link_to 'New Certification', new_certification_path, class: "btn btn-success" %></p>
+  <p><%= link_to 'Back', root_path, class: "btn btn-link" %></p>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

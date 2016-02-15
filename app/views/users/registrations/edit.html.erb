@@ -1,31 +1,147 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render 'dashboard_users/nav' %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Manage Your Profile</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="panel panel-default">
+          <div class="panel-body">
+          <div class="col-md-6">
+            
+            <div class="form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :name %><br />
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :country %><br />
+              <%= f.text_field :country, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :city %><br />
+              <%= f.text_field :city, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :job_title %><br />
+              <%= f.text_field :job_title, class: "form-control" %>
+            </div>
+          </div>
+      
+        <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :company %><br />
+              <%= f.text_field :company, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :bio %><br />
+              <%= f.text_field :bio, class: "form-control" %>
+            </div>
+            
+            
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+          
+            <div class="form-group">
+              <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+          
+            <div class="form-group">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+          
+            <div class="form-group">
+              <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+              <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+            </div>
+        
+      </div>
+      </div>
+        
+      
+    </div>
+  </div> <!-- end of big row -->
+  
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Education</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="panel panel-default">
+          <div class="panel-body">
+          <div class="col-md-6">
+            
+            <div class="form-group">
+              <%= f.label :school %><br />
+              <%= f.text_field :school, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :graduation_date %><br />
+              <%= f.date_field :graduation_date, class: "form-control" %>
+            </div>
+            
+          </div>
+      
+        <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :field_of_study %><br />
+              <%= f.text_field :field_of_study, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :description %><br />
+              <%= f.text_field :description, class: "form-control" %>
+            </div>
+        
+        </div>
+      </div>
+    </div>
+  </div> <!-- end of big row -->
+  
+  <div class="row">
+      <div class="col-md-12">
+        <h2>Interests</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="panel panel-default">
+          <div class="panel-body">
+          <div class="col-md-12">
+            
+            <div class="form-group">
+              <%= f.label :interests %><br />
+              <%= f.text_area :interests, class: "form-control", placeholder: "Examples: Management training, new technologies, investing, fishing, snowboarding, digital photography" %>
+            </div>
+            
+        
+        </div>
+      </div>
+    </div>
+  </div> <!-- end of big row -->
+  
+  
+  
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+  
 
   <div class="actions">
     <%= f.submit "Update" %>
@@ -37,3 +153,8 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+
+
+
+<%= render 'layouts/footer' %>

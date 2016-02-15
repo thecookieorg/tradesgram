@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :certifications
+  get 'dashboard_users/index'
+
   devise_for :admins
   devise_for :users
   get 'pages/index'
@@ -16,11 +19,11 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: 'pages#about', as: :user_path
+    root to: 'dashboard_users#index', as: :user_path
   end
 
   root 'pages#index'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+     <th>Certification name</th>
+     <th>Certification authority</th>
+     <th>License number</th>
+     <th>Certification URL</th>
+     <th>Does certificate expire?</th>
+     <th>Manage</th>
+  </tr>
+ </thead>
+ <tbody>
+   <tr>
+     <td><%= @certification.certification_name %></td>
+     <td><%= @certification.certification_authority %></td>
+     <td><%= @certification.license_number %></td>
+     <td><%= @certification.certification_url %></td>
+     <td><%= @certification.this_certificate_does_not_expire %></td>
+     <td><%= link_to 'Edit', edit_certification_path(@certification) %></td>
+   </tr>
+ </tbody>
+</table>
+
+<%= link_to 'Back', certifications_path %>

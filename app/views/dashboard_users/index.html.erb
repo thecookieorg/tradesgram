@@ -1,0 +1,243 @@
+<% if current_user.name.blank? %>
+    <div class="row" style="margin-bottom: 30px; margin-top: 10px;">
+        <div class="col-md-12">
+            <div style="text-align: center">
+                <%= image_tag 'logo.png' %>
+                <hr>
+            </div>
+        </div>
+    </div>
+<% else %>
+    <%= render 'dashboard_users/nav' %>
+<% end %>
+
+<div class="container">
+    <div class="row">
+        <% if current_user.name.blank? %>
+            <div class="col-md-12">
+                <h3 style="text-align: center;">Please complete your Tradesgram profile!</h3>
+                <%= link_to 'Complete your profile here', edit_user_registration_path, class: "btn btn-primary btn-lg btn-block", style: "margin-top: 40px;" %>
+            </div>
+        <% else %>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Welcome, <%= current_user.name %></h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= image_tag 'avatar.png' %>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Country: <%= current_user.country %></p>
+                            <p>City: <%= current_user.city %></p>
+                            <p>Email: <%= current_user.email %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Company: <%= current_user.company %> </p>
+                            <p>Job Title: <%= current_user.job_title %></p>
+                            <p>Field of Study: <%= current_user.field_of_study %></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">    
+                        <div class="col-md-12">
+                            <p><%= current_user.bio %></p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+           
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Profile Strength</h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <% if @certifications.blank? %>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                        <span class="sr-only">25% Complete</span>
+                                    </div>
+                                </div>
+                              </div>
+                            </div> <!-- row end -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <p><%= link_to "Add Courses", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                    <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                    <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                </div>
+                            </div> <!-- row end -->
+                            </div>
+                            </div>
+                            </div>
+                        <% else %>
+                            
+                            <div class="progress">
+                                    <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+                                        <span class="sr-only">35% Complete</span>
+                                    </div>
+                                </div>
+                              </div>
+                            </div> <!-- row end -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><%= link_to 'Manage Certifications', certifications_path, class: "btn btn-primary btn-lg btn-block" %></p>
+                                    <p><%= link_to "Add Courses", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                    <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                    <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                </div>
+                            </div> <!-- row end -->
+                       </div>
+                            </div>
+                            </div>
+
+            <% end %>
+        <% end %>
+    </div>
+    
+    <!-- EDUCATION BLOCK STARTS HERE -->
+     <% if current_user.school.blank? %>
+     
+     <% else %>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Education</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                          <div class="col-md-6">
+                            <p>School: <%= current_user.school %></p>
+                            <p>Graduation Date: <%= current_user.graduation_date %></p>
+                            <p>Field of Study: <%= current_user.field_of_study %></p>
+                          </div>
+                          <div class="col-md-6">
+                            <p>Description: <%= current_user.description %></p>
+                          </div>
+                      </div>
+                </div>
+                </div>
+        </div>
+    </div>
+    <% end %>
+    <!-- EDUCATION BLOCK ENDS HERE -->
+    
+    
+    <!-- CERTIFICATIONS BLOCK STARTS HERE -->
+    <% if @certifications.blank? %>
+    
+    <% else %>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Certifications</h3>
+                  </div>
+                  <div class="panel-body">
+                    <% @certifications.each do |c| %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><%= c.certification_name %></h4>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p>Certification Authority: <%= c.certification_authority %></p>        
+                                </div>
+                                <div class="col-md-3">
+                                    <p>License Number: <%= c.license_number %></p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p>Certification URL: <%= c.certification_url %></p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p>Is certificate expiring? <br> <%= c.this_certificate_does_not_expire %></p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <hr>
+                    <% end %>
+                  </div>
+                </div>
+            </div>
+    </div>
+    <% end %>
+    <!-- CERTIFICATIONS BLOCK ENDS HERE -->
+    
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-12">
+            <h4>Add a section to your profile – be discovered for your next career step.</h4>
+        </div>
+    </div>
+        <div class="row" style="margin-top: 17px;">
+            <div class="col-md-6">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <i class="fa fa-graduation-cap" style="background: #00A0DC; color: white; font-size: 50px;"></i>
+                        <h4>Education</h4>
+                        <p>Members with a school on their profile get 7 times more profile views.</p>
+                      </div>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                      <div class="panel-body">
+                        <i class="fa fa-graduation-cap" style="background: #00A0DC; color: white; font-size: 50px;"></i>
+                        <h4>Skills</h4>
+                        <p>Members with a school on their profile get 7 times more profile views.</p>
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                      <div class="panel-body">
+                        <i class="fa fa-file-text-o" style="background: #8D6CAB; color: white; font-size: 50px;"></i>
+                        <h4>Certifications</h4>
+                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                      <div class="panel-body">
+                        <i class="fa fa-file-text-o" style="background: #8D6CAB; color: white; font-size: 50px;"></i>
+                        <h4>Experience</h4>
+                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                      <div class="panel-body">
+                        <i class="fa fa-graduation-cap" style="background: #00A0DC; color: white; font-size: 50px;"></i>
+                        <h4>Projects</h4>
+                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                      <div class="panel-body">
+                        <i class="fa fa-file-text-o" style="background: #8D6CAB; color: white; font-size: 50px;"></i>
+                        <h4>Courses</h4>
+                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                      </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<%= render 'layouts/footer' %>

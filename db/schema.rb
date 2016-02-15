@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214024525) do
+ActiveRecord::Schema.define(version: 20160215180715) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,6 +31,64 @@ ActiveRecord::Schema.define(version: 20160214024525) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
+  create_table "certifications", force: :cascade do |t|
+    t.string   "certification_name"
+    t.string   "certification_authority"
+    t.string   "license_number"
+    t.string   "certification_url"
+    t.boolean  "this_certificate_does_not_expire"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "user_id"
+  end
+
+  add_index "certifications", ["user_id"], name: "index_certifications_on_user_id"
+
+  create_table "educations", force: :cascade do |t|
+    t.string   "school"
+    t.date     "start_year"
+    t.date     "end_year"
+    t.string   "degree"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+  end
+
+  add_index "educations", ["user_id"], name: "index_educations_on_user_id"
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "full_name"
+    t.string   "country"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "job_title"
+    t.string   "company"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
+  create_table "user_profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "country"
+    t.string   "city"
+    t.string   "address"
+    t.string   "job_title"
+    t.string   "company"
+    t.text     "bio"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -44,6 +102,19 @@ ActiveRecord::Schema.define(version: 20160214024525) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "phone"
+    t.string   "country"
+    t.string   "city"
+    t.string   "address"
+    t.string   "job_title"
+    t.string   "company"
+    t.text     "bio"
+    t.string   "school"
+    t.date     "graduation_date"
+    t.string   "field_of_study"
+    t.text     "description"
+    t.text     "interests"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
