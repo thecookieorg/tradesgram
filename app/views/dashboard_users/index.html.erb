@@ -30,20 +30,30 @@
                             <%= image_tag 'avatar.png' %>
                         </div>
                         <div class="col-md-4">
-                            <p>Country: <%= current_user.country %></p>
-                            <p>City: <%= current_user.city %></p>
-                            <p>Email: <%= current_user.email %></p>
+                            <h4>Country</h4>
+                            <p><%= current_user.country %></p>
+                            <br>
+                            <h4>City</h4>
+                            <p><%= current_user.city %></p>
+                            <br>
+                            <h4>Email</h4>
+                            <p><%= current_user.email %></p>
                         </div>
                         <div class="col-md-4">
-                            <p>Company: <%= current_user.company %> </p>
-                            <p>Job Title: <%= current_user.job_title %></p>
-                            <p>Field of Study: <%= current_user.field_of_study %></p>
+                            <h4>Company</h4>
+                            <p><%= current_user.company %></p>
+                            <br>
+                            <h4>Job Title</h4>
+                            <p><%= current_user.job_title %></p>
+                            <br>
+                            <h4>Field of Study</h4>
+                            <p><%= current_user.field_of_study %></p>
                         </div>
                     </div>
                     <hr>
                     <div class="row">    
                         <div class="col-md-12">
-                            <p><%= current_user.bio %></p>
+                            <p><em><%= current_user.bio %></em></p>
                         </div>
                     </div>
                   </div>
@@ -110,7 +120,7 @@
         <div class="col-md-9">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Education</h3>
+                    <h2 class="panel-title"><i class="fa fa-graduation-cap" style="color: #00A0DC;"></i> Education</h2>
                   </div>
                   <div class="panel-body">
                       <div class="row">
@@ -139,7 +149,7 @@
         <div class="col-md-9">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Certifications</h3>
+                    <h2 class="panel-title"><i class="fa fa-file-text-o" style="color: #8D6CAB;"></i> Certifications</h2>
                   </div>
                   <div class="panel-body">
                     <% @certifications.each do |c| %>
@@ -172,6 +182,33 @@
     <% end %>
     <!-- CERTIFICATIONS BLOCK ENDS HERE -->
     
+    
+    <!-- INTERESTS BLOCK STARTS HERE -->
+     <% if current_user.interests.blank? %>
+     
+     <% else %>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h2 class="panel-title"><i class="fa fa-newspaper-o" style="color: #00A0DC;"></i> Interests</h2>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                          <div class="col-md-12">
+                            <p><%= current_user.interests %></p>
+                          </div>
+                          
+                      </div>
+                </div>
+                </div>
+        </div>
+    </div>
+    <% end %>
+    <!-- INTERESTS BLOCK ENDS HERE -->
+    
+    
+    <!-- PROMO ADD SKILLS, EDUCATION, ETC. BLOCK STARTS HERE -->
     <div class="row" style="margin-top: 40px;">
         <div class="col-md-12">
             <h4>Add a section to your profile – be discovered for your next career step.</h4>
@@ -181,7 +218,7 @@
             <div class="col-md-6">
                     <div class="panel panel-default">
                       <div class="panel-body">
-                        <i class="fa fa-graduation-cap" style="background: #00A0DC; color: white; font-size: 50px;"></i>
+                        <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
                         <h4>Education</h4>
                         <p>Members with a school on their profile get 7 times more profile views.</p>
                       </div>
@@ -190,7 +227,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                       <div class="panel-body">
-                        <i class="fa fa-graduation-cap" style="background: #00A0DC; color: white; font-size: 50px;"></i>
+                        <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
                         <h4>Skills</h4>
                         <p>Members with a school on their profile get 7 times more profile views.</p>
                       </div>
@@ -202,7 +239,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                       <div class="panel-body">
-                        <i class="fa fa-file-text-o" style="background: #8D6CAB; color: white; font-size: 50px;"></i>
+                        <i class="fa fa-file-text-o" style="color: #8D6CAB; font-size: 50px;"></i>
                         <h4>Certifications</h4>
                         <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
                       </div>
@@ -211,7 +248,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                       <div class="panel-body">
-                        <i class="fa fa-file-text-o" style="background: #8D6CAB; color: white; font-size: 50px;"></i>
+                        <i class="fa fa-file-text-o" style="color: #8D6CAB; font-size: 50px;"></i>
                         <h4>Experience</h4>
                         <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
                       </div>
@@ -222,7 +259,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                       <div class="panel-body">
-                        <i class="fa fa-graduation-cap" style="background: #00A0DC; color: white; font-size: 50px;"></i>
+                        <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
                         <h4>Projects</h4>
                         <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
                       </div>
@@ -231,13 +268,14 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                       <div class="panel-body">
-                        <i class="fa fa-file-text-o" style="background: #8D6CAB; color: white; font-size: 50px;"></i>
+                        <i class="fa fa-file-text-o" style="color: #8D6CAB; font-size: 50px;"></i>
                         <h4>Courses</h4>
                         <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
                       </div>
                 </div>
             </div>
         </div>
+        <!-- PROMO ADD SKILLS, EDUCATION, ETC. BLOCK ENDS HERE -->
 </div>
 
 <%= render 'layouts/footer' %>
