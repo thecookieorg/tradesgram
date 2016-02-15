@@ -1,0 +1,45 @@
+<%= form_for(@experience) do |f| %>
+  <% if @experience.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
+
+      <ul>
+      <% @experience.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="form-group">
+    <%= f.label :company_name %><br>
+    <%= f.text_field :company_name, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= f.label :location %><br>
+    <%= f.text_field :location, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= f.label :time_start %><br>
+    <%= f.date_field :time_start, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= f.label :time_end %><br>
+    <%= f.date_field :time_end, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= f.label :currently_work_here %><br>
+    <%= f.check_box :currently_work_here %>
+  </div>
+   <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>

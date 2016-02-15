@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215180715) do
+ActiveRecord::Schema.define(version: 20160215234539) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20160215180715) do
 
   add_index "certifications", ["user_id"], name: "index_certifications_on_user_id"
 
+  create_table "courses", force: :cascade do |t|
+    t.string   "course_name"
+    t.string   "course_number"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+  end
+
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
+
   create_table "educations", force: :cascade do |t|
     t.string   "school"
     t.date     "start_year"
@@ -56,6 +66,21 @@ ActiveRecord::Schema.define(version: 20160215180715) do
   end
 
   add_index "educations", ["user_id"], name: "index_educations_on_user_id"
+
+  create_table "experiences", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "title"
+    t.string   "location"
+    t.date     "time_start"
+    t.date     "time_end"
+    t.boolean  "currently_work_here"
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "user_id"
+  end
+
+  add_index "experiences", ["user_id"], name: "index_experiences_on_user_id"
 
   create_table "profiles", force: :cascade do |t|
     t.string   "full_name"
