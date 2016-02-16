@@ -27,11 +27,7 @@
                   <div class="panel-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <% if current_user.avatar.present? %>
-                                <%= image_tag(current_user.avatar.url(:medium), style: "width:100%;") %>
-                            <% else %>
-                                <%= image_tag 'avatar.png' %>
-                            <% end %>
+                            <%= image_tag(current_user.avatar.url(:medium), style: "width:100%;") %>
                         </div>
                         <div class="col-md-4">
                             <h4>Country</h4>
@@ -532,12 +528,31 @@
                                     <p><strong>Project Description:</strong> <%= project.project_description %></p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" style="margin-top: 20px;">
+                                <% if project.project_video.present? && project.image.blank? %>
                                 <div class="col-md-12">
+                                    <p><strong>Project Video</strong></p><br>
                                     <div class="embed-container">  
                                       <%= embed(project.project_video) %>
                                     </div>
                                 </div>
+                                <% elsif project.project_video.blank? && project.image.present? %>
+                                    <div class="col-md-6">
+                                        <p><strong>Project Image</strong></p><br>
+                                        <%= image_tag project.image.url(:large), style: "width: 100%;" %>
+                                    </div>
+                                <% elsif project.project_video.present? && project.image.present? %>
+                                    <div class="col-md-6">
+                                        <p><strong>Project Video</strong></p><br>
+                                        <div class="embed-container">  
+                                          <%= embed(project.project_video) %>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Project Image</strong></p><br>
+                                        <%= image_tag project.image.url(:large), style: "width: 100%;" %>
+                                    </div>
+                                <% end %>
                             </div>
                             
                             <hr>
