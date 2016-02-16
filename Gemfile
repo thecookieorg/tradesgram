@@ -14,6 +14,9 @@ gem 'devise'
 gem 'paperclip', '~> 4.3'
 gem 'searchkick'
 gem 'bootsy'
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
+gem "mailboxer"
 
 group :development, :test do
   gem 'byebug'
