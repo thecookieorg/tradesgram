@@ -568,73 +568,103 @@
     <!-- COURSES BLOCK ENDS HERE -->
     
     
+    <!-- POSTS BLOCK STARTS HERE -->
+    <% if @posts.present? %>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h2 class="panel-title"><i class="fa fa-book" style="color: orange;"></i> My Posts</h2>
+                  </div>
+                  <div class="panel-body">
+                    <% @posts.each do |p| %>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4><%= p.title %></h4>
+                            </div>
+                            <div class="col-md-8">
+                                <p><%= p.content %></p>
+                            </div>
+                        </div>
+                        <hr>
+                    <% end %>
+                  </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    <!-- POSTS BLOCK ENDS HERE -->
+    
+    
     <!-- PROMO ADD SKILLS, EDUCATION, ETC. BLOCK STARTS HERE -->
-    <div class="row" style="margin-top: 40px;">
-        <div class="col-md-12">
-            <h4>Add a section to your profile – be discovered for your next career step.</h4>
+    <% unless @certifications.present? && @experiences.present? && @courses.present? && @projects.present? %>
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-12">
+                <h4>Add a section to your profile – be discovered for your next career step.</h4>
+            </div>
         </div>
-    </div>
-        <div class="row" style="margin-top: 17px;">
-            <div class="col-md-6">
+            <div class="row" style="margin-top: 17px;">
+                <div class="col-md-6">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
+                            <h4>Education</h4>
+                            <p>Members with a school on their profile get 7 times more profile views.</p>
+                          </div>
+                        </div>
+                </div>
+                <div class="col-md-6">
                     <div class="panel panel-default">
-                      <div class="panel-body">
-                        <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
-                        <h4>Education</h4>
-                        <p>Members with a school on their profile get 7 times more profile views.</p>
-                      </div>
+                          <div class="panel-body">
+                            <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
+                            <h4>Skills</h4>
+                            <p>Members with a school on their profile get 7 times more profile views.</p>
+                          </div>
                     </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                      <div class="panel-body">
-                        <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
-                        <h4>Skills</h4>
-                        <p>Members with a school on their profile get 7 times more profile views.</p>
-                      </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                      <div class="panel-body">
-                        <i class="fa fa-file-text-o" style="color: #8D6CAB; font-size: 50px;"></i>
-                        <h4>Certifications</h4>
-                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
-                      </div>
+            
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                          <div class="panel-body">
+                            <i class="fa fa-file-text-o" style="color: #8D6CAB; font-size: 50px;"></i>
+                            <h4>Certifications</h4>
+                            <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                          <div class="panel-body">
+                            <i class="fa fa-building-o" style="color: green; font-size: 50px;"></i>
+                            <h4>Experience</h4>
+                            <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                          </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                      <div class="panel-body">
-                        <i class="fa fa-building-o" style="color: green; font-size: 50px;"></i>
-                        <h4>Experience</h4>
-                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
-                      </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                          <div class="panel-body">
+                            <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
+                            <h4>Projects</h4>
+                            <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                          <div class="panel-body">
+                            <i class="fa fa-book" style="color: orange;font-size: 50px;"></i>
+                            <h4>Courses</h4>
+                            <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
+                          </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                      <div class="panel-body">
-                        <i class="fa fa-graduation-cap" style="color: #00A0DC; font-size: 50px;"></i>
-                        <h4>Projects</h4>
-                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
-                      </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                      <div class="panel-body">
-                        <i class="fa fa-book" style="color: orange;font-size: 50px;"></i>
-                        <h4>Courses</h4>
-                        <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
-                      </div>
-                </div>
-            </div>
-        </div>
+        <% end %>
         <!-- PROMO ADD SKILLS, EDUCATION, ETC. BLOCK ENDS HERE -->
 </div>
 

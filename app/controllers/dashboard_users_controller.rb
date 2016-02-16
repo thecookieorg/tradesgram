@@ -4,5 +4,6 @@ class DashboardUsersController < ApplicationController
     @experiences = current_user.experiences
     @courses = current_user.courses
     @projects = current_user.projects
+    @posts = current_user.posts
   end
 end
