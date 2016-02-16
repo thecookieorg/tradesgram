@@ -1,0 +1,71 @@
+                                    
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank? && @projects.blank? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present? && @projects.blank? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.blank? && @projects.present? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank? && @projects.blank? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present? && @projects.blank? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.blank? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present? && @projects.present? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank? && @projects.present? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experinces.present? && @courses.present? && @projects.blank? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.present? && @projects.blank? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.present? && @projects.present? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.present? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>

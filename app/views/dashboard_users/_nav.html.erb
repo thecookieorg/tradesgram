@@ -45,6 +45,9 @@
           <ul class="dropdown-menu">
               <li><%= link_to 'Manage Profile', edit_user_registration_path %></li>
               <li><%= link_to 'Manage Certifications', certifications_path %></li>
+              <li><%= link_to 'Manage Work Experience', experiences_path %></li>
+              <li><%= link_to 'Manage Courses', courses_path %></li>
+              <li><%= link_to 'Manage Projects', projects_path %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to('User Logout', destroy_user_session_path, :method => :delete) %></li>
           </ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215234539) do
+ActiveRecord::Schema.define(version: 20160216060520) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -96,6 +96,20 @@ ActiveRecord::Schema.define(version: 20160215234539) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
+  create_table "projects", force: :cascade do |t|
+    t.string   "project_name"
+    t.date     "project_start_date"
+    t.date     "project_end_date"
+    t.string   "project_url"
+    t.string   "project_video"
+    t.text     "project_description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "user_id"
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+
   create_table "user_profiles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -140,6 +154,10 @@ ActiveRecord::Schema.define(version: 20160215234539) do
     t.string   "field_of_study"
     t.text     "description"
     t.text     "interests"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,0 +1,45 @@
+<%= render 'dashboard_users/nav' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>My Projects</h3>
+
+
+ <table class="table table-bordered" style="background-color: white;">
+  <thead>
+    <tr>
+      <th>Project name</th>
+      <th>Project start date</th>
+      <th>Project end date</th>
+      <th>Project url</th>
+      <th>Project video</th>
+      <th>Project description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.project_name %></td>
+        <td><%= project.project_start_date %></td>
+        <td><%= project.project_end_date %></td>
+        <td><%= project.project_url %></td>
+        <td><%= project.project_video %></td>
+        <td><%= project.project_description %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+  <p><%= link_to 'New Project', new_project_path, class: "btn btn-success" %></p>
+  <p><%= link_to 'Back', root_path, class: "btn btn-link" %></p>
+    </div>
+  </div>
+</div>
+
+
+<%= render 'layouts/footer' %>

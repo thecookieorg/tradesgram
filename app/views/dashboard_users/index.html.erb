@@ -27,7 +27,11 @@
                   <div class="panel-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <%= image_tag 'avatar.png' %>
+                            <% if current_user.avatar.present? %>
+                                <%= image_tag(current_user.avatar.url(:medium), style: "width:100%;") %>
+                            <% else %>
+                                <%= image_tag 'avatar.png' %>
+                            <% end %>
                         </div>
                         <div class="col-md-4">
                             <h4>Country</h4>
@@ -70,103 +74,255 @@
                       <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                              
-                                <% if @certifications.blank? && @experiences.blank? && @courses.blank? %>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                            <span class="sr-only">15% Complete</span>
+                                
+                                <!-- First set of comparison: 
+                                                                    B B B B
+                                                                    P B B B
+                                                                    B P B B
+                                                                    B B P B
+                                                                    B B B P
+                                                                                        -->
+                                    <% if @certifications.blank? && @experiences.blank? && @courses.blank? && @projects.blank? %>
+                                        <h4>Start building your profile!</h4>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                                <span class="sr-only">10% Complete</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <% elsif @certifications.present? && @experiences.blank? && @courses.blank? %>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                                            <span class="sr-only">30% Complete</span>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.blank? && @projects.blank? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                                <span class="sr-only">25% Complete</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <% elsif @certifications.blank? && @experiences.present? && @courses.blank? %>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                                            <span class="sr-only">30% Complete</span>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank? && @projects.blank? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                                <span class="sr-only">25% Complete</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <% elsif @certifications.blank? && @experiences.blank? && @courses.present? %>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                                            <span class="sr-only">30% Complete</span>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present? && @projects.blank? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                                <span class="sr-only">25% Complete</span>
+                                            </div>
                                         </div>
-                                    </div>    
-                                <% elsif @certifications.present? && @experiences.present? && @courses.blank? %>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                                            <span class="sr-only">30% Complete</span>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.blank? && @projects.present? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                                <span class="sr-only">25% Complete</span>
+                                            </div>
                                         </div>
-                                    </div>    
-                                <% elsif @certifications.blank? && @experiences.present? && @courses.present? %>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                                            <span class="sr-only">30% Complete</span>
+                                    <!-- First set of comparision end -->  
+                                
+                                <!-- Second set of comparison starts:
+                                                                            P P B B OK
+                                                                            P B P B OK
+                                                                            P B B P OK
+                                                                            B B P P OK
+                                                                            B P B P OK
+                                                                            B P P B OK
+                                                                                        -->
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank? && @projects.blank? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span class="sr-only">50% Complete</span>
+                                            </div>
                                         </div>
-                                    </div>    
-                                <% elsif @certifications.present? && @experiences.present? && @courses.present? %>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete</span>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present? && @projects.blank? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span class="sr-only">50% Complete</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <% end %>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.blank? && @projects.present? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span class="sr-only">50% Complete</span>
+                                            </div>
+                                        </div>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present? && @projects.present? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span class="sr-only">50% Complete</span>
+                                            </div>
+                                        </div>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank? && @projects.present? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span class="sr-only">50% Complete</span>
+                                            </div>
+                                        </div>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.present? && @projects.blank? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                                <span class="sr-only">50% Complete</span>
+                                            </div>
+                                        </div>
+                                    <!-- Second comparison ends -->
                                     
+                                    <!-- Third set of comparison starts:
+                                                                            P P P B
+                                                                            P P B P
+                                                                            P B P P
+                                                                            B P P P
+                                                                                        -->
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.present? && @projects.blank? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                                <span class="sr-only">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank? && @projects.present? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                                <span class="sr-only">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present? && @projects.present? %>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                                <span class="sr-only">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.present? && @projects.present? %>
+                                    <div class="progress">
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                                <span class="sr-only">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    <!-- Third comparison ends -->
+                                    
+                                    <!-- Fourth set of comparison starts:
+                                                                            P P P P
+                                                                                        -->
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.present? && @projects.present? %>
+                                        <h4>Your profile is completed!</h4>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <span class="sr-only">100% Complete</span>
+                                            </div>
+                                        </div>
+                                    <!-- Fourth comparison ends -->
+                                    
+                                    <% end %>
                               </div> <!-- col-md-12 end -->
                             </div> <!-- row end -->
+                            
                             <div class="row">
                                 <div class="col-md-12">
-                                    <% if @certifications.blank? && @experiences.blank? && @courses.blank? %>
+                                    <!-- First set of comparison: 
+                                                                    B B B B
+                                                                    P B B B
+                                                                    B P B B
+                                                                    B B P B
+                                                                    B B B P
+                                                                                        -->
+                                    <% if @certifications.blank? && @experiences.blank? && @courses.blank? && @projects.blank? %>
                                         <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                     <% elsif @certifications.present? && @experiences.blank? && @courses.blank? %>
-                                        <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.blank? && @projects.blank? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
                                         <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank?%>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank? && @projects.blank? %>
                                         <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
                                         <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank?%>
-                                        <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present? && @projects.blank? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.blank? && @projects.present? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <!-- First set of comparision end -->                                        
+                                    
+                                    <!-- Second set of comparison starts:
+                                                                            P P B B OK
+                                                                            P B P B OK
+                                                                            P B B P OK
+                                                                            B B P P OK
+                                                                            B P B P OK
+                                                                            B P P B OK
+                                                                                        -->
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank? && @projects.blank? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
                                         <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
                                         <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                    <% elsif @certifications.present? && @experiences.present? && @courses.present?%>
-                                        <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
-                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present? && @projects.blank? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>   
-                                    <% elsif @certifications.blank? && @experiences.present? && @courses.present?%>
-                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
-                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present?%>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.blank? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present? && @projects.present? %>
                                         <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>    
-                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present?%>
-                                       <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank? && @projects.present? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.present? && @projects.blank? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <!-- Second comparison ends -->
+                                    
+                                    <!-- Third set of comparison starts:
+                                                                            P P P B
+                                                                            P P B P
+                                                                            P B P P
+                                                                            B P P P
+                                                                                        -->
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.present? && @projects.blank? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", new_project_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
                                         <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
-                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>    
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.present? && @projects.present? %>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <!-- Third comparison ends -->
+                                    
+                                    <!-- Fourth set of comparison starts:
+                                                                            P P P P
+                                                                                        -->
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.present? && @projects.present? %>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certification Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Projects Added <small><%= link_to '[Modify]', projects_path %></small></p>
+                                    <!-- Fourth comparison ends -->
+                                    
                                     <% end %>
                                 </div>
                             </div> <!-- row end -->
@@ -334,6 +490,56 @@
                         <div class="col-md-12">
                             <h4><%= course.course_name %></h4>
                             <p><strong>Course Number:</strong> <%= course.course_number %></p>
+                            <hr>
+                        </div>
+                    </div>
+                    
+                    <% end %>
+                  </div>
+                </div>
+            </div>
+    </div>
+    <% end %>
+    <!-- COURSES BLOCK ENDS HERE -->
+    
+    
+    <!-- COURSES BLOCK STARTS HERE -->
+    <% if @projects.blank? %>
+    
+    <% else %>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h2 class="panel-title"><i class="fa fa-book" style="color: orange;"></i> Projects</h2>
+                  </div>
+                  <div class="panel-body">
+                    <% @projects.each do |project| %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><%= project.project_name %></h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Project Start:</strong> <%= project.project_start_date %></p>
+                                    <p><strong>Project End:</strong> <% if project.project_end_date.blank? %>
+                                                                        Present
+                                                                     <% else %>
+                                                                        <%= project.project_end_date %>
+                                                                     <% end %></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Project URL:</strong> <%= project.project_url %></p>
+                                    <p><strong>Project Description:</strong> <%= project.project_description %></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="embed-container">  
+                                      <%= embed(project.project_video) %>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <hr>
                         </div>
                     </div>

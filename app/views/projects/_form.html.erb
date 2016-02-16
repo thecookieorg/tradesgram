@@ -1,0 +1,42 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :project_name %><br>
+    <%= f.text_field :project_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :project_start_date %><br>
+    <%= f.date_field :project_start_date, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :project_end_date %><br>
+    <%= f.date_field :project_end_date, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :project_url %><br>
+    <%= f.text_field :project_url, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :project_video %><br>
+    <%= f.text_field :project_video, class: "form-control" %>
+    <em>YouTube videos only supported. Make sure to copy the last part of the video (bold in example): https://www.youtube.com/<strong>watch?v=XYUGBCjHPMc</strong></em>
+  </div>
+  <div class="form-group">
+    <%= f.label :project_description %><br>
+    <%= f.text_area :project_description, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>

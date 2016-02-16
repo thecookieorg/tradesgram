@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <h3>My Courses</h3>
     
-      <table class="table table-bordered">
+      <table class="table table-bordered" style="background-color: white;">
         <thead>
           <tr>
             <th>Course name</th>
@@ -19,7 +19,7 @@
               <td><%= course.course_name %></td>
               <td><%= course.course_number %></td>
               <td><%= link_to 'Edit', edit_course_path(course) %></td>
-              <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tbody>
