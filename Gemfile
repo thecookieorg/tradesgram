@@ -13,6 +13,7 @@ gem "twitter-bootstrap-rails"
 gem 'devise'
 gem 'paperclip', '~> 4.3'
 gem 'searchkick'
+gem 'bootsy'
 
 group :development, :test do
   gem 'byebug'

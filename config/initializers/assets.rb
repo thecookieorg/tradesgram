@@ -11,6 +11,7 @@ Rails.application.config.assets.precompile += %w( col-p6.jpg )
 Rails.application.config.assets.precompile += %w( avatar.png )
 Rails.application.config.assets.precompile += %w( facebook.png )
 Rails.application.config.assets.precompile += %w( twitter.png )
+Rails.application.config.assets.precompile += %w( bootsy/gallery-loader.gif )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
