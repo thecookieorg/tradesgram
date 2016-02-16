@@ -71,28 +71,46 @@
                         <div class="row">
                             <div class="col-md-12">
                               
-                                <% if @certifications.blank? && @experiences.blank? %>
+                                <% if @certifications.blank? && @experiences.blank? && @courses.blank? %>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
                                             <span class="sr-only">15% Complete</span>
                                         </div>
                                     </div>
-                                <% elsif @certifications.present? && @experiences.blank? %>
+                                <% elsif @certifications.present? && @experiences.blank? && @courses.blank? %>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
                                             <span class="sr-only">30% Complete</span>
                                         </div>
                                     </div>
-                                <% elsif @certifications.blank? && @experiences.present? %>
+                                <% elsif @certifications.blank? && @experiences.present? && @courses.blank? %>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
                                             <span class="sr-only">30% Complete</span>
                                         </div>
                                     </div>
-                                <% elsif @certifications.present? && @experiences.present? %>
+                                <% elsif @certifications.blank? && @experiences.blank? && @courses.present? %>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete</span>
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                                            <span class="sr-only">30% Complete</span>
+                                        </div>
+                                    </div>    
+                                <% elsif @certifications.present? && @experiences.present? && @courses.blank? %>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                                            <span class="sr-only">30% Complete</span>
+                                        </div>
+                                    </div>    
+                                <% elsif @certifications.blank? && @experiences.present? && @courses.present? %>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                                            <span class="sr-only">30% Complete</span>
+                                        </div>
+                                    </div>    
+                                <% elsif @certifications.present? && @experiences.present? && @courses.present? %>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete</span>
                                         </div>
                                     </div>
                                 <% end %>
@@ -101,30 +119,54 @@
                             </div> <!-- row end -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <% if @certifications.blank? && @experiences.blank? %>
+                                    <% if @certifications.blank? && @experiences.blank? && @courses.blank? %>
                                         <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Courses", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                     <% elsif @certifications.present? && @experiences.blank? %>
+                                     <% elsif @certifications.present? && @experiences.blank? && @courses.blank? %>
                                         <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
                                         <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
-                                        <p><%= link_to "Add Courses", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                    <% elsif @certifications.blank? && @experiences.present? %>
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.blank?%>
                                         <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
-                                        <p><%= link_to "Add Courses", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
-                                    <% elsif @certifications.present? && @experiences.present? %>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.blank?%>
                                         <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
                                         <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
-                                        <p><%= link_to "Add Courses", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Courses", new_course_path, class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
                                         <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.present? && @experiences.present? && @courses.present?%>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>   
+                                    <% elsif @certifications.blank? && @experiences.present? && @courses.present?%>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Experience Added <small><%= link_to '[Modify]', experiences_path %></small></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                    <% elsif @certifications.blank? && @experiences.blank? && @courses.present?%>
+                                        <p><%= link_to "Add Certifications", new_certification_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>    
+                                    <% elsif @certifications.present? && @experiences.blank? && @courses.present?%>
+                                       <p><i class="fa fa-check" style="color: green;"></i> Certifications Added <small><%= link_to '[Modify]', certifications_path %></small></p>
+                                        <p><%= link_to "Add Experience", new_experience_path, class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><i class="fa fa-check" style="color: green;"></i> Course Added <small><%= link_to '[Modify]', courses_path %></small></p>
+                                        <p><%= link_to "Add Projects", "#", class: "btn btn-success btn-lg btn-block" %></p>
+                                        <p><%= link_to "Add Summary", "#", class: "btn btn-success btn-lg btn-block" %></p>    
                                     <% end %>
                                 </div>
                             </div> <!-- row end -->
@@ -232,7 +274,7 @@
     <!-- INTERESTS BLOCK ENDS HERE -->
     
     
-     <!-- EXPERIENCES BLOCK STARTS HERE -->
+    <!-- EXPERIENCES BLOCK STARTS HERE -->
     <% if @experiences.blank? %>
     
     <% else %>
@@ -240,7 +282,7 @@
         <div class="col-md-9">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h2 class="panel-title"><i class="fa fa-building-o" style="color: green;"></i> Experience</h2>
+                    <h2 class="panel-title"><i class="fa fa-building-o" style="color: green;"></i> Work Experience</h2>
                   </div>
                   <div class="panel-body">
                     <% @experiences.each do |e| %>
@@ -274,6 +316,35 @@
     </div>
     <% end %>
     <!-- EXPERIENCES BLOCK ENDS HERE -->
+    
+    
+    <!-- COURSES BLOCK STARTS HERE -->
+    <% if @courses.blank? %>
+    
+    <% else %>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h2 class="panel-title"><i class="fa fa-book" style="color: orange;"></i> Courses</h2>
+                  </div>
+                  <div class="panel-body">
+                    <% @courses.each do |course| %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><%= course.course_name %></h4>
+                            <p><strong>Course Number:</strong> <%= course.course_number %></p>
+                            <hr>
+                        </div>
+                    </div>
+                    
+                    <% end %>
+                  </div>
+                </div>
+            </div>
+    </div>
+    <% end %>
+    <!-- COURSES BLOCK ENDS HERE -->
     
     
     <!-- PROMO ADD SKILLS, EDUCATION, ETC. BLOCK STARTS HERE -->
@@ -336,7 +407,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                       <div class="panel-body">
-                        <i class="fa fa-file-text-o" style="color: #8D6CAB; font-size: 50px;"></i>
+                        <i class="fa fa-book" style="color: orange;font-size: 50px;"></i>
                         <h4>Courses</h4>
                         <p>Adding a summary is a quick and easy way to highlight your experience and interests. Add Summary</p>
                       </div>
